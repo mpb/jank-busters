@@ -18,7 +18,7 @@
     </style>
     <script>
       document.addEventListener('DOMContentLoaded', function() {
-        document.body.appendChild(new FPSMeter());
+        fpsMeter = document.body.appendChild(new FPSMeter());
       });
     </script>
 
@@ -61,7 +61,7 @@
     <div id="item2">
       <div style="width: 500px">
         <label>
-          <input id="jank" type="checkbox" onclick="toggleJank">Jank</button>
+          <input id="jank" type="checkbox" onclick="didJankStateChange()">Jank</button>
         </label>
       </div>
     </div>
@@ -92,14 +92,21 @@
       }
       function maybeJank() {
         maybeJankPending = false;
-        if (document.querySelector('#jank').checked)
+        if (!document.querySelector('#jank').checked){
           return;
+        }
         console.time('jank');
-        sleep(4+Math.random() * 60);
+        sleep(4+Math.random() * 600);
         console.timeEnd('jank');
         setTimeout(maybeJank, Math.random(4));
       };
       didJankStateChange();
+
+      function pollFPS() {
+        if(fpsMeter) fpsMeter.updateContents_();
+        setTimeout(pollFPS, 1000);
+      };
+      setTimeout(pollFPS, 1000);
 
     </script>
   </body>
