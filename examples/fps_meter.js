@@ -67,18 +67,17 @@
     this.textBox = document.createElement('div');
     this.textBox.style.fontSize = '12px';
     this.textBox.style.lineHeight = '100%';
-    this.textBox.style.border = '1px solid black';
     this.textBox.style.width = '100px';
     this.appendChild(this.textBox);
 
 
     this.chartBox = document.createElement('div');
-    this.chartBox.style.border = '1px solid black';
+    this.chartBox.style.borderLeft = '1px solid black';
     this.chartBox.style.position = 'absolute';
     this.chartBox.style.left = '108px';
     this.chartBox.style.top = '0px';
     this.chartBox.style.width = '188px';
-    this.chartBox.style.height = '96px';
+    this.chartBox.style.height = '100%';
     this.appendChild(this.chartBox);
 
     this.chartOpts = {chartBox:this.chartBox};
